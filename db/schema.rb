@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_28_083817) do
+ActiveRecord::Schema.define(version: 2023_04_29_153652) do
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "user_id"
+    t.integer "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_bookings_on_property_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "city"
+    t.string "country"
+    t.string "property_type"
+    t.integer "price_per_night"
+    t.integer "max_guests"
+    t.integer "bedrooms"
+    t.integer "beds"
+    t.integer "baths"
+    t.string "image_url"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.string "token"
@@ -28,5 +57,8 @@ ActiveRecord::Schema.define(version: 2022_03_28_083817) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bookings", "properties"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "properties", "users"
   add_foreign_key "sessions", "users"
 end

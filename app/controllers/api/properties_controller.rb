@@ -17,7 +17,7 @@ module Api
     def index
       @properties = Property.order(created_at: :desc).page(params[:page]).per(6)
       render json: { properties: serialized_properties, total_pages: @properties.total_pages, current_page: @properties.current_page }, status: :ok
-    end
+    end    
 
     def show
       render 'api/properties/show', status: :ok

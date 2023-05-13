@@ -1,0 +1,52 @@
+.user-bookings {
+    padding: 20px;
+    background-color: #f0f0f0;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    h1 {
+        color: #333;
+    }
+
+    div {
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    button {
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.property-bookings {
+    padding: 20px;
+    background-color: #f0f0f0;
+    margin-bottom: 30px;
+    border-radius: 10px;
+
+    h1 {
+        color: #333;
+    }
+
+    div {
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+}
+
+.bookings-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-bookings,
+.property-bookings {
+    width: 49%;
+}

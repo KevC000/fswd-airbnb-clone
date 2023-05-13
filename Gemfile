@@ -15,6 +15,7 @@ gem 'webpacker', '~> 5.0'
 # gem 'uglifier', '~> 4.2.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
+gem 'aws-sdk-s3', '~> 1.0'
 
 # Use jquery as the JavaScript library
 # gem 'jquery-rails', '~> 4.4'
@@ -32,7 +33,6 @@ gem 'bcrypt', '~> 3.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # AWS S3
-gem 'aws-sdk-s3', '~> 1.114'
 # Webrick
 gem 'webrick', '~> 1.7'
 # Mail gem
@@ -49,13 +49,20 @@ gem 'bootsnap', '>= 1.13', require: false
 
 gem 'stripe'
 
+# Gemfile
+gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'figaro'
+
+gem 'mini_magick'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 11.1.3', platforms: %i[mri mingw x64_mingw]
 
   # Added by Altcademy.com
   gem 'awesome_print', '~> 1.9'
-  gem 'dotenv-rails', '~> 2.8'
   gem 'factory_bot_rails', '~> 6.2'
   gem 'pry-rails', '>= 0.3.9'
   gem 'rspec-rails', '~> 5.1'

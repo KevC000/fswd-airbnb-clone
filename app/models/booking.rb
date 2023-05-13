@@ -1,40 +1,35 @@
-module Api
-    class BookingsController < ApplicationController
+class Booking < ApplicationRecord
+  belongs_to :user
+  belongs_to :property
+  has_many :charges
 
-        belongs_to :user
-        belongs_to :property
-        has_many :charges
-      
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates :user, presence: true
+  validates :property, presence: true
 
-      def create
-        token = cookies.signed[:airbnb_session_token]
-        session = Session.find_by(token: token)
-        return render json: { error: 'user not logged in' }, status: :unauthorized if !session
+  before_validation :check_start_date_smaller_than_end_date
+  before_validation :check_availability
+
+  def is_paid?
+    charges.exists?(complete: true)
+  end  
+
+  private
+
+  def check_start_date_smaller_than_end_date
+    raise ArgumentError, 'start date cannot be larger than end date' if start_date > end_date
+  end
+
+  def check_availability
+    overlapping_bookings = Booking.where(property_id: self.property_id)
+                                  .where("start_date < ? AND end_date > ?", self.end_date, self.start_date)
   
-        property = Property.find_by(id: params[:booking][:property_id])
-        return render json: { error: 'cannot find property' }, status: :not_found if !property
+    paid_overlapping_bookings = overlapping_bookings.select { |booking| booking.is_paid? }
   
-        begin
-          @booking = Booking.create({ user_id: session.user.id, property_id: property.id, start_date: params[:booking][:start_date], end_date: params[:booking][:end_date]})
-          render 'api/bookings/create', status: :created
-        rescue ArgumentError => e
-          render json: { error: e.message }, status: :bad_request
-        end
-      end
-  
-      def get_property_bookings
-        property = Property.find_by(id: params[:id])
-        return render json: { error: 'cannot find property' }, status: :not_found if !property
-  
-        @bookings = property.bookings.where("end_date > ? ", Date.today)
-        render 'api/bookings/index'
-      end
-  
-      private
-  
-      def booking_params
-        params.require(:booking).permit(:property_id, :start_date, :end_date)
-      end
+    if paid_overlapping_bookings.any?
+      errors.add(:overlapping_dates, "date range overlaps with a paid booking")
+      throw(:abort)
     end
-  end
-  end
+  end  
+end

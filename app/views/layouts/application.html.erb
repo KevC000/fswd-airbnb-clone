@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <script>
+  window.__ENV__ = {
+    stripePublishableKey: '<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>',
+    stripeSecretKey: '<%= ENV["STRIPE_SECRET_KEY"] %>',
+    stripeToken: '<%= ENV["STRIPE_TOKEN"] %>',
+    awsAccessKeyId: '<%= ENV["AWS_ACCESS_KEY_ID"] %>',
+    awsSecretAccessKey: '<%= ENV["AWS_SECRET_ACCESS_KEY"] %>',
+    url: '<%= ENV["URL"] %>'
+  }
+</script>
+
   </head>
 
   <body>

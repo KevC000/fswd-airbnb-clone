@@ -21,11 +21,9 @@ class Property extends React.Component {
           loading: false,
         })
       })
-
-      initiateStripeCheckout()
   }
 
-  render () {
+  render() {
     const { property, loading } = this.state;
     if (loading) {
       return <p>loading...</p>;

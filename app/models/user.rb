@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_secure_password
   has_many :sessions
   has_many :properties
   has_many :bookings
@@ -9,12 +10,4 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :username
   validates_uniqueness_of :email
-
-  after_validation :hash_password
-
-  private
-
-  def hash_password
-    self.password = BCrypt::Password.create(password)
-  end
 end

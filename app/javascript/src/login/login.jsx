@@ -29,7 +29,7 @@ class Login extends React.Component {
     })
   }
 
-  render () {
+  render() {
     const { authenticated, show_login } = this.state;
     if (authenticated) {
       return (

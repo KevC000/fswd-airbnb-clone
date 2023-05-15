@@ -22,7 +22,7 @@ module AirbnbClone
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       url: ENV['URL']
     }
-    
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

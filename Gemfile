@@ -50,14 +50,13 @@ gem 'bootsnap', '>= 1.13', require: false
 gem 'stripe'
 
 # Gemfile
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: %i[development test]
 
 gem 'figaro'
 
 gem 'mini_magick'
 
 gem 'kaminari'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

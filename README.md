@@ -1,5 +1,5 @@
 # Airbnb Clone
-Simple clone of the property rental website, Airbnb. Features include sign up, sign in, adding/editting properties, and simulated booking. Forked for starter code.
+Simple clone of Airbnb. Features include sign up, sign in, adding/editting properties, and simulated booking. Forked for starter code.
 
 ### Home page
 ![home](https://github.com/KevC000/fswd-airbnb-clone/assets/82843524/5254afe2-743b-49e8-b5e8-16b3ec3eaab2)

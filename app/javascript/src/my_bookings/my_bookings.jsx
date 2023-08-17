@@ -18,6 +18,7 @@ class MyBookings extends React.Component {
       fetch('/api/bookings/get_property_bookings_for_owner').then(handleErrors),
     ]).then(([userBookingsData, propertyBookingsData]) => {
       console.log(userBookingsData, propertyBookingsData);
+      console.log('my properties',propertyBookingsData);
       this.setState({
         userBookings: userBookingsData.bookings,
         propertyBookings: propertyBookingsData.bookings,

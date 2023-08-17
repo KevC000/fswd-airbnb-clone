@@ -35,10 +35,12 @@ module Api
 
     def get_property_bookings_for_owner
       user = current_user
+      puts "Current user: #{user.inspect}"
       bookings = Booking.joins(:property).where(properties: { user_id: user.id }).includes(:user, :property)
-    
+      puts "Bookings: #{bookings.inspect}"
       render json: { bookings: bookings.as_json(include: { user: {}, property: { include: :user }}) }, status: :ok
     end
+
     
     def booking_success
       booking = Booking.find(params[:id])

@@ -10,7 +10,7 @@ Simple clone of Airbnb. Features include sign up, sign in, adding/editting prope
 <br>
 
 ### Back End
-- **Ruby on Rails** as back end, deployed on **Heroku** with **PostgreSQL**(**SQLite** for local deployment**).
+- **Ruby on Rails** as back end, deployed on **Heroku** with **PostgreSQL**(**SQLite** for local deployment).
 - **Stripe** for simulated transaction handling.
 - **AWS S3** for image storage.
 

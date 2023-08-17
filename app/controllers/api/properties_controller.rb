@@ -1,10 +1,9 @@
 module Api
   class PropertiesController < ApplicationController
-    before_action :set_property, only: [:show, :update]
+    before_action :set_property, only: %i[show update]
 
     def create
-      property = Property.new(property_params)
-      property.user_id = current_user.id
+      property = current_user.properties.new(property_params)
 
       if property.save
         handle_image_upload(property)
@@ -17,7 +16,7 @@ module Api
     def index
       @properties = Property.order(created_at: :desc).page(params[:page]).per(6)
       render json: { properties: serialized_properties, total_pages: @properties.total_pages, current_page: @properties.current_page }, status: :ok
-    end    
+    end
 
     def show
       render 'api/properties/show', status: :ok
@@ -46,7 +45,7 @@ module Api
     def serialized_properties
       @properties.map do |property|
         property_attributes = property.attributes
-        property_attributes["image_url"] = property.image_url
+        property_attributes['image_url'] = property.image_url
         property_attributes
       end
     end
@@ -77,14 +76,14 @@ module Api
       begin
         object.upload_file(file.tempfile.path, acl: 'public-read')
         object.public_url.to_s
-      rescue => e
+      rescue StandardError => e
         puts "Error uploading image to S3: #{e.message}"
         nil
       end
     end
 
     def property_params
-      params.require(:property).permit(:title, :description, :city, :country, :property_type, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :image, :id, :image_url)
-    end    
+      params.require(:property).permit(:title, :description, :city, :country, :property_type, :price_per_night, :max_guests, :bedrooms, :beds, :baths, :image, :id, :image_url, :user_id)
+    end
   end
 end

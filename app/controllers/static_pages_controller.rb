@@ -17,13 +17,12 @@ class StaticPagesController < ApplicationController
     render 'edit_property'
   end
 
-  
   def add_property
     render 'add_property'
   end
 
   def bookings
-   render 'my_bookings'
+    render 'my_bookings'
   end
 
   def booking_success

@@ -5,7 +5,7 @@ Simple clone of Airbnb. Features include sign up, sign in, adding/editting prope
 ### Front  End 
 
  - Built with **ReactJS**, **Bootstrap**, **react-bootstrap**.
- - **react-dates** for booking features.
+ - **react-dates** for booking UI.
 
 <br>
 

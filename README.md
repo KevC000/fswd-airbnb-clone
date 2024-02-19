@@ -1,5 +1,5 @@
 # Airbnb Clone
-Simple clone of Airbnb. Features include sign up, sign in, adding/editting properties, and simulated booking. Forked for starter code.
+Clone of Airbnb. Features include sign up, sign in, adding/editing properties, and simulated booking. Forked for starter code.
 
 ## Technologies 
 ### Front  End 
